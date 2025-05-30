@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export const Login = () => {
   return (
     <div>
@@ -30,7 +32,7 @@ export const Login = () => {
             Login
           </button>
           <p className="text-blue-400">
-            Don't have an account ? <a href="/signup">SignUp</a>
+            Don't have an account ? <Link to="/signup">SignUp</Link>
           </p>
         </div>
       </form>
