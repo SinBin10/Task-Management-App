@@ -1,10 +1,15 @@
-// import { SignUp } from "./Pages/SignUp";
+import { SignUp } from "./Pages/SignUp";
 import { Login } from "./Pages/Login";
 
 const App = () => {
   return (
     <div>
-      <Login />
+      <a href="/signup">
+        <SignUp />
+      </a>
+      <a href="/login">
+        <Login />
+      </a>
     </div>
   );
 };
