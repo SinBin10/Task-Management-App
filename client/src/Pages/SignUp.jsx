@@ -70,7 +70,7 @@ export const SignUp = () => {
             <div className="text-center">
               <button
                 type="submit"
-                className=" bg-blue-700 text-white p-2 rounded m-auto" rounded-xl
+                className=" bg-blue-700 text-white p-2 rounded m-auto font-bold" rounded-xl
               >
                 Sign Up 
               </button>
