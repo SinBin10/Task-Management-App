@@ -1,10 +1,11 @@
-import { Login } from "./Login";
+
+import {Link} from "react-router-dom"
 
 export const SignUp = () => {
   return (
     <main className="block m-auto">
       
-      <section className=" block m-auto w-9/12 h-max bg-[#3B3B3B] rounded-4xl justify-items-center p-6">
+      <section className=" block m-auto w-[482px] h-max bg-[#3B3B3B] rounded-4xl justify-items-center p-6">
         
       
         <div className="flex flex-col w-full px-12 justify-center">
@@ -12,7 +13,7 @@ export const SignUp = () => {
           {/* Header */}
           <header className="text-center">
             <h1 className="text-white text-2xl font-bold mb-4 m-auto p-0.5">Sign Up</h1>
-            <p className="m-auto font text-blue-400">Already have an account? <a className=  " underline hover:text-red" href= {Login}> Login </a> </p>
+            <p className="m-auto font text-blue-400">Already have an account? <Link to ="/login">Login</Link> </p>
           </header>
 
           {/* Form Section */}
