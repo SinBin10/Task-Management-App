@@ -1,3 +1,5 @@
+import { Login } from "./Login";
+
 export const SignUp = () => {
   return (
     <main className="block m-auto">
@@ -10,7 +12,7 @@ export const SignUp = () => {
           {/* Header */}
           <header className="text-center">
             <h1 className="text-white text-2xl font-bold mb-4 m-auto p-0.5">Sign Up</h1>
-            <p className="m-auto font-bold">Create a free account or Login</p>
+            <p className="m-auto font text-blue-400">Already have an account? <a className=  " underline hover:text-red" href= {Login}> Login </a> </p>
           </header>
 
           {/* Form Section */}
@@ -20,7 +22,7 @@ export const SignUp = () => {
                 type="text"
                 placeholder="Full Name"
                 required
-                className="bg-[#959292] w-full p-2 rounded"
+                className="bg-[#959292] w-full p-2 rounded-xl"
               />
             </div>
 
@@ -29,7 +31,7 @@ export const SignUp = () => {
                 type="email"
                 placeholder="Email Address"
                 required
-                className="bg-[#959292] w-full p-2 rounded"
+                className="bg-[#959292] w-full p-2 rounded-xl"
               />
             </div>
 
@@ -38,23 +40,28 @@ export const SignUp = () => {
                 type="password"
                 placeholder="Password"
                 required
-                className="bg-[#959292] w-full p-2 rounded"
+                className="bg-[#959292] w-full p-2 rounded-xl"
               />
             </div>
 
-              {/* The password div will have script to validate length, charachters and all that */}
+              {/* The password div will have script to validate length, character and all that */}
             <div className="mb-4">
               <input
                 type="password"
                 placeholder="Confirm Password"
                 required
-                className="bg-[#959292] w-full p-2 rounded"
+                className="bg-[#959292] w-full p-2 rounded-xl"
               />
             </div>
 
             {/* Terms and Conditions */}
-            <div className="text-white text-sm mb-4">
-              <p>
+            <div className="text-white text-sm mb-4 flex items-start">
+              <input className="mt-1"
+              type= "checkbox" 
+              required
+              rounded-xl
+              />
+              <p className="">
                 By pressing agree and continue below, I agree to (our app's name goes here) terms and conditions of service and privacy policy
               </p>
             </div>
@@ -63,9 +70,9 @@ export const SignUp = () => {
             <div className="text-center">
               <button
                 type="submit"
-                className="bg-[#959292] text-black p-2 rounded m-auto font-bold"
+                className=" bg-blue-700 text-white p-2 rounded m-auto" rounded-xl
               >
-                Agree and Continue
+                Sign Up 
               </button>
             </div>
           </form>
