@@ -1,12 +1,32 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
 
 export const Login = () => {
   const [emailValue, setEmailValue] = useState("");
   const [password, setPassword] = useState("");
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await axios.post("http://localhost:5000/login", {
+        email: emailValue,
+        password: password,
+      });
+      console.log(res);
+      alert(res.data.msg);
+    } catch (error) {
+      console.log("some error occured in the post request...");
+    }
+  };
+
   return (
     <div>
-      <form className="w-[482px] h-[500px] bg-[#3B3B3B] rounded-4xl flex flex-col justify-center items-center gap-y-11">
+      <form
+        onSubmit={handleLogin}
+        className="w-[482px] h-[500px] bg-[#3B3B3B] rounded-4xl flex flex-col justify-center items-center gap-y-11"
+      >
         <h1 className="text-3xl text-white">Login</h1>
         <div className="flex flex-col w-full px-12">
           <label className="text-white text-xl" htmlFor="">
