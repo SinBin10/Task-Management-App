@@ -32,37 +32,11 @@ export const SignUp = () => {
     }
   };
 
-  const [fullName, setFullName] = useState("");
-  const [emailValue, setEmailValue] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (password !== confirmPassword) {
-      alert("Passwords do not match!");
-      return;
-    }
-
-    try {
-      const res = await axios.post("http://localhost:5000/signup", {
-        name: fullName,
-        email: emailValue,
-        confirmPassword,
-      });
-      console.log(res);
-      alert(res.data.msg);
-    } catch (error) {
-      console.error("Error during signup:", error);
-      alert("Something went wrong during signup.");
-    }
-  };
-
+  
   return (
     <main className="block m-auto">
       <section className="block m-auto w-[482px] h-max bg-[#3B3B3B] rounded-4xl justify-items-center p-6">
-      <section className="block m-auto w-[482px] h-max bg-[#3B3B3B] rounded-4xl justify-items-center p-6">
+
         <div className="flex flex-col w-full px-12 justify-center">
           {/* Header */}
           <header className="text-center">
@@ -76,7 +50,7 @@ export const SignUp = () => {
           </header>
 
           {/* Form Section */}
-          <form onSubmit={handleSubmit}>
+          
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <input
@@ -86,8 +60,9 @@ export const SignUp = () => {
                 className="bg-[#959292] w-full p-2 rounded-xl"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
+                
+
+
               />
             </div>
 
@@ -99,8 +74,8 @@ export const SignUp = () => {
                 className="bg-[#959292] w-full p-2 rounded-xl"
                 value={emailValue}
                 onChange={(e) => setEmailValue(e.target.value)}
-                value={emailValue}
-                onChange={(e) => setEmailValue(e.target.value)}
+        
+               
               />
             </div>
 
@@ -112,8 +87,7 @@ export const SignUp = () => {
                 className="bg-[#959292] w-full p-2 rounded-xl"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+            
               />
             </div>
 
@@ -125,8 +99,7 @@ export const SignUp = () => {
                 className="bg-[#959292] w-full p-2 rounded-xl"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
+                
               />
             </div>
 
@@ -144,7 +117,7 @@ export const SignUp = () => {
               <button
                 type="submit"
                 className="bg-blue-700 text-white p-2 m-auto font-bold rounded-xl"
-                className="bg-blue-700 text-white p-2 m-auto font-bold rounded-xl"
+            
               >
                 Sign Up
               </button>
