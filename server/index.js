@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
+const mongoose = require("mongoose");
 const authRouter = require("./routes/authRouter");
+require("dotenv").config();
 
 const app = express();
 
@@ -24,6 +26,9 @@ app.use("/", authRouter);
 //   });
 // });
 
-app.listen(5000, () => {
-  console.log("listening on port 5000...");
+mongoose.connect(process.env.MONGO_URI).then(() => {
+  console.log("connected to mongodb....");
+  app.listen(5000, () => {
+    console.log("listening on port 5000...");
+  });
 });
