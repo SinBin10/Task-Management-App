@@ -22,6 +22,7 @@ export const SignUp = () => {
         email: emailValue,
         confirmPassword,
       });
+      localStorage.setItem("token", res.data.token);
       console.log(res);
       alert(res.data.msg);
     } catch (error) {

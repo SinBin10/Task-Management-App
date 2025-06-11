@@ -14,6 +14,7 @@ export const Login = () => {
         email: emailValue,
         password: password,
       });
+      localStorage.setItem("token", res.data.token);
       console.log(res);
       alert(res.data.msg);
     } catch (error) {
