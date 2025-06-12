@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export const Login = () => {
+  const navigate = useNavigate();
   const [emailValue, setEmailValue] = useState("");
   const [password, setPassword] = useState("");
 
@@ -15,6 +17,7 @@ export const Login = () => {
         password: password,
       });
       localStorage.setItem("token", res.data.token);
+      navigate("/dashboard");
       console.log(res);
       alert(res.data.msg);
     } catch (error) {

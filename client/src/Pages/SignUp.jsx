@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export const SignUp = () => {
+  const navigate = useNavigate();
   const [fullName, setFullName] = useState("");
   const [emailValue, setEmailValue] = useState("");
   const [password, setPassword] = useState("");
@@ -23,6 +25,7 @@ export const SignUp = () => {
         confirmPassword,
       });
       localStorage.setItem("token", res.data.token);
+      navigate("/dashboard");
       console.log(res);
       alert(res.data.msg);
     } catch (error) {
