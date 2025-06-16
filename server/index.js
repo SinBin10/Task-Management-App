@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const authRouter = require("./routes/authRouter");
+const dashboardRouter = require("./routes/dashboardRoutes");
 require("dotenv").config();
 
 const app = express();
@@ -12,6 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/", authRouter);
+app.use("/", dashboardRouter);
 
 // app.post("/login", (req, res) => {
 //   const { email, password } = req.body;
