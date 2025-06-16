@@ -51,7 +51,7 @@ const signUpReponse = async (req, res) => {
       { expiresIn: "1hr" }
     );
 
-    res.json({ msg: "user created succesfully...." }, token);
+    res.json({ msg: "user created succesfully....", token });
 
     // const createUser = async () => {
     //   await User.create({
