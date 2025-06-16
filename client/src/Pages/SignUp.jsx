@@ -1,20 +1,49 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export const SignUp = () => {
-const [isLogin, setIsLogin] = useState(true);
+  const navigate = useNavigate();
+  const [isLogin, setIsLogin] = useState(true);
   const [username, setUsername] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [emailValue, setEmailValue] = useState("");
   const [password, setPassword] = useState("");
-  const [email, setEmail] = useState(""); // Only for signup
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const payload = { username, password };
-    if (!isLogin) payload.email = email;
 
-    // Replace with actual login/signup API call
-    console.log(isLogin ? "Logging in:" : "Signing up:", payload);
+    if (!isLogin && password !== confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+
+    try {
+      if (isLogin) {
+        const res = await axios.post("http://localhost:5000/login", {
+          username,
+          password,
+        });
+        localStorage.setItem("token", res.data.token);
+        navigate("/dashboard");
+      } else {
+        const res = await axios.post("http://localhost:5000/signup", {
+          name: fullName,
+          email: emailValue,
+          username,
+          password,
+        });
+        localStorage.setItem("token", res.data.token);
+        navigate("/dashboard");
+        alert(res.data.msg);
+      }
+    } catch (error) {
+      console.error("Error during authentication:", error);
+      alert("Something went wrong.");
+    }
   };
 
   return (
@@ -53,18 +82,32 @@ const [isLogin, setIsLogin] = useState(true);
             </h2>
 
             {!isLogin && (
-              <div className="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
-                <label className="flex flex-col min-w-40 flex-1">
-                  <input
-                    type="email"
-                    placeholder="Email"
-                    className="form-input flex w-full resize-none rounded-lg text-white focus:outline-0 focus:ring-0 border-none bg-[#303030] h-14 placeholder:text-[#ababab] p-4 text-base"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
-                </label>
-              </div>
+              <>
+                <div className="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
+                  <label className="flex flex-col min-w-40 flex-1">
+                    <input
+                      type="text"
+                      placeholder="Full Name"
+                      className="form-input flex w-full resize-none rounded-lg text-white focus:outline-0 focus:ring-0 border-none bg-[#303030] h-14 placeholder:text-[#ababab] p-4 text-base"
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
+                      required
+                    />
+                  </label>
+                </div>
+                <div className="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
+                  <label className="flex flex-col min-w-40 flex-1">
+                    <input
+                      type="email"
+                      placeholder="Email"
+                      className="form-input flex w-full resize-none rounded-lg text-white focus:outline-0 focus:ring-0 border-none bg-[#303030] h-14 placeholder:text-[#ababab] p-4 text-base"
+                      value={emailValue}
+                      onChange={(e) => setEmailValue(e.target.value)}
+                      required
+                    />
+                  </label>
+                </div>
+              </>
             )}
 
             <div className="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
@@ -92,6 +135,21 @@ const [isLogin, setIsLogin] = useState(true);
                 />
               </label>
             </div>
+
+            {!isLogin && (
+              <div className="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
+                <label className="flex flex-col min-w-40 flex-1">
+                  <input
+                    type="password"
+                    placeholder="Confirm Password"
+                    className="form-input flex w-full resize-none rounded-lg text-white focus:outline-0 focus:ring-0 border-none bg-[#303030] h-14 placeholder:text-[#ababab] p-4 text-base"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    required
+                  />
+                </label>
+              </div>
+            )}
 
             <div className="flex px-4 py-3">
               <button
