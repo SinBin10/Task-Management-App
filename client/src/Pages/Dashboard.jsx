@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 export const Dashboard = () => {
@@ -21,5 +22,9 @@ export const Dashboard = () => {
     handleDashboard();
   }, []);
 
-  return <h1 className="text-5xl text-white">{message}</h1>;
+  return (
+    <Link to="/login">
+      <h1 className="text-5xl text-white">{message}</h1>
+    </Link>
+  );
 };
